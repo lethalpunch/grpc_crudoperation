@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+
+package user_service;
+
+service UserService {
+    rpc GetUsers(NoParam) returns (stream UserResponse);
+    rpc GetUser(string) returns (UserResponse);
+    rpc AddUser(UserRequest) returns (UserResponse);
+    rpc UpdateUser(UserRequest) returns (UserResponse);
+    rpc DeleteUser(string) returns (UserResponse);
+};
+
+message NoParam{};
+
+message UserResponse{
+    string name = 1;
+    string id = 2;
+};
+
+message UserRequest{
+    string name = 1;
+    string id = 2;
+};
